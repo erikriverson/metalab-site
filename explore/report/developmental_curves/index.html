@@ -1,0 +1,1962 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Nelson Bighetti">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Introduction The goal for this analysis was to better understand the shape of the developmental curve. To do this we used linear mixed effects models, so that the variance of individual meta-analyses could be accounted for.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/explore/report/developmental_curves/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/explore/report/developmental_curves/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="MetaLab">
+  <meta property="og:url" content="/explore/report/developmental_curves/">
+  <meta property="og:title" content="Developmental curve comparison | MetaLab">
+  <meta property="og:description" content="Introduction The goal for this analysis was to better understand the shape of the developmental curve. To do this we used linear mixed effects models, so that the variance of individual meta-analyses could be accounted for."><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+    
+  
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Developmental curve comparison | MetaLab</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class=" ">
+
+  
+  
+  
+    <script>window.staDarkLightChooser = true;</script>
+  
+  
+    <script>const isSiteThemeDark = false;</script>
+  
+  
+  <script src="/js/load-theme.js"></script>
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">MetaLab</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">MetaLab</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/explore"><span>Explore Data</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/documentation"><span>Documentation</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/team"><span>Team</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Developmental curve comparison</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 1, 0001
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>The goal for this analysis was to better understand the shape of the developmental curve. To do this we used linear mixed effects models, so that the variance of individual meta-analyses could be accounted for.</p>
+<p>Summary of investigations:</p>
+<ul>
+<li>Meta-analytic mixed-effects are promising, but…</li>
+<li>The random effects structure (specifically if we nest paper effects within meta-analysis) makes a big difference to the implied curve shape.</li>
+<li>Subsetting to only studies with multiple age groups improves performance.</li>
+</ul>
+</div>
+<div id="simple-random-effects-structure" class="section level2">
+<h2>Simple random effects structure</h2>
+<p>Below is our data set separated by meta-analysis with four curve types: 1) linear, 2) logarithmic, 3) quadratic, and 4) both linear and logarithmic predictors.</p>
+<p><img src="/explore/report/developmental_curves_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>We ran mixed effects regressions where meta-analysis (data set) was included as a random intercept for our four models. We then ran Chi-squared tests to compare the different models to one another. Model comparison found the quadratic model to be a better fit than the linear model and the logarithmic model, but no difference between the linear and logarithmic model. The two predictor model (linear and log) also outperformed both the single predictor linear model and the single predictor logarithmic model.</p>
+<pre class="r"><code>lin_lmer &lt;- lmer(d_calc ~ mean_age + 
+                (1 | dataset), 
+                weights = 1/d_var_calc, 
+                REML = F, data = metalab_data)
+
+log_lmer &lt;- lmer(d_calc ~ log(mean_age) + 
+                (1 | dataset), 
+                weights = 1/d_var_calc, 
+                REML = F, data = metalab_data)
+
+quad_lmer &lt;- lmer(d_calc ~ I(mean_age^2) + 
+                 (1 | dataset), 
+                 weights = 1/d_var_calc, 
+                 REML = F, data = metalab_data)
+
+lin_log_lmer &lt;- lmer(d_calc ~ mean_age + log(mean_age) + 
+                    (1| dataset), 
+                    weights = 1/d_var_calc, 
+                    REML = F, data = metalab_data)
+
+kable(coef(summary(lin_lmer)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">0.2807609</td>
+<td align="right">0.0552828</td>
+<td align="right">5.07863</td>
+</tr>
+<tr class="even">
+<td>mean_age</td>
+<td align="right">0.0001127</td>
+<td align="right">0.0000308</td>
+<td align="right">3.65735</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(coef(summary(log_lmer)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">0.0118618</td>
+<td align="right">0.1408954</td>
+<td align="right">0.084189</td>
+</tr>
+<tr class="even">
+<td>log(mean_age)</td>
+<td align="right">0.0554444</td>
+<td align="right">0.0221679</td>
+<td align="right">2.501114</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(coef(summary(quad_lmer)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">0.3353818</td>
+<td align="right">0.0553838</td>
+<td align="right">6.055589</td>
+</tr>
+<tr class="even">
+<td>I(mean_age^2)</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0000000</td>
+<td align="right">1.204584</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(coef(summary(lin_log_lmer)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">0.2070297</td>
+<td align="right">0.1579869</td>
+<td align="right">1.3104228</td>
+</tr>
+<tr class="even">
+<td>mean_age</td>
+<td align="right">0.0001020</td>
+<td align="right">0.0000377</td>
+<td align="right">2.7085984</td>
+</tr>
+<tr class="odd">
+<td>log(mean_age)</td>
+<td align="right">0.0134391</td>
+<td align="right">0.0270370</td>
+<td align="right">0.4970641</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(anova(lin_lmer, log_lmer))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">npar</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">logLik</th>
+<th align="right">deviance</th>
+<th align="right">Chisq</th>
+<th align="right">Df</th>
+<th align="right">Pr(&gt;Chisq)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lin_lmer</td>
+<td align="right">4</td>
+<td align="right">3927.746</td>
+<td align="right">3950.343</td>
+<td align="right">-1959.873</td>
+<td align="right">3919.746</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td>log_lmer</td>
+<td align="right">4</td>
+<td align="right">3934.821</td>
+<td align="right">3957.418</td>
+<td align="right">-1963.410</td>
+<td align="right">3926.821</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(anova(lin_lmer, quad_lmer))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">npar</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">logLik</th>
+<th align="right">deviance</th>
+<th align="right">Chisq</th>
+<th align="right">Df</th>
+<th align="right">Pr(&gt;Chisq)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lin_lmer</td>
+<td align="right">4</td>
+<td align="right">3927.746</td>
+<td align="right">3950.343</td>
+<td align="right">-1959.873</td>
+<td align="right">3919.746</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td>quad_lmer</td>
+<td align="right">4</td>
+<td align="right">3939.532</td>
+<td align="right">3962.129</td>
+<td align="right">-1965.766</td>
+<td align="right">3931.532</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(anova(log_lmer, quad_lmer))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">npar</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">logLik</th>
+<th align="right">deviance</th>
+<th align="right">Chisq</th>
+<th align="right">Df</th>
+<th align="right">Pr(&gt;Chisq)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>log_lmer</td>
+<td align="right">4</td>
+<td align="right">3934.821</td>
+<td align="right">3957.418</td>
+<td align="right">-1963.410</td>
+<td align="right">3926.821</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td>quad_lmer</td>
+<td align="right">4</td>
+<td align="right">3939.532</td>
+<td align="right">3962.129</td>
+<td align="right">-1965.766</td>
+<td align="right">3931.532</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(anova(lin_lmer, lin_log_lmer))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">npar</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">logLik</th>
+<th align="right">deviance</th>
+<th align="right">Chisq</th>
+<th align="right">Df</th>
+<th align="right">Pr(&gt;Chisq)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lin_lmer</td>
+<td align="right">4</td>
+<td align="right">3927.746</td>
+<td align="right">3950.343</td>
+<td align="right">-1959.873</td>
+<td align="right">3919.746</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td>lin_log_lmer</td>
+<td align="right">5</td>
+<td align="right">3929.500</td>
+<td align="right">3957.746</td>
+<td align="right">-1959.750</td>
+<td align="right">3919.500</td>
+<td align="right">0.2461267</td>
+<td align="right">1</td>
+<td align="right">0.6198157</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(anova(log_lmer, lin_log_lmer))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">npar</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">logLik</th>
+<th align="right">deviance</th>
+<th align="right">Chisq</th>
+<th align="right">Df</th>
+<th align="right">Pr(&gt;Chisq)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>log_lmer</td>
+<td align="right">4</td>
+<td align="right">3934.821</td>
+<td align="right">3957.418</td>
+<td align="right">-1963.41</td>
+<td align="right">3926.821</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td>lin_log_lmer</td>
+<td align="right">5</td>
+<td align="right">3929.500</td>
+<td align="right">3957.746</td>
+<td align="right">-1959.75</td>
+<td align="right">3919.500</td>
+<td align="right">7.321147</td>
+<td align="right">1</td>
+<td align="right">0.0068148</td>
+</tr>
+</tbody>
+</table>
+<p>Focusing on the linear, log, and two predictor (linear and log) models, we built predictions for all complete meta-analyses. The plot separated by meta-analysis is presented below. The linear and two predictor models are pretty similar, mainly being different at very early ages.</p>
+<pre class="r"><code>metalab_data_preds &lt;- metalab_data %&gt;%
+  select(dataset, short_name, d_calc, d_var_calc, mean_age, study_ID) %&gt;%
+  filter(complete.cases(.)) %&gt;%
+  mutate(lin_pred = predict(lin_lmer)) %&gt;%
+  mutate(log_pred = predict(log_lmer)) %&gt;%
+  mutate(lin_log_pred = predict(lin_log_lmer))</code></pre>
+<p><img src="/explore/report/developmental_curves_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Overall this method looks pretty good. It seems like the linear predictor in the two predictor model is smoothing the logs at the edges, and the random effects are working to capture cross data set variability.</p>
+</div>
+<div id="complex-random-effects-structure-nested-paper-effects" class="section level2">
+<h2>Complex random effects structure (nested paper effects)</h2>
+<p>We decided to expand our random effects structure to include paper (study_ID) nested in meta-analysis (data set) to capture the fact that a given meta-analysis has a specific set of papers, and may have multiple entries from the same paper. Here we focused on the two predictor model. The simpler random effects model from above is repeated here for easy comparison. A Chi-squared test finds a significant difference between the models, with the model with the more complex random effects structure having a lower AIC.</p>
+<pre class="r"><code>lin_log_paper_lmer &lt;- lmer(d_calc ~ mean_age + log(mean_age) + 
+                          (1 | dataset / study_ID),
+                          weights = 1/d_var_calc, 
+                          REML = F, data = metalab_data)
+
+kable(coef(summary(lin_log_paper_lmer)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">0.0550962</td>
+<td align="right">0.1843753</td>
+<td align="right">0.2988266</td>
+</tr>
+<tr class="even">
+<td>mean_age</td>
+<td align="right">0.0000869</td>
+<td align="right">0.0000420</td>
+<td align="right">2.0676816</td>
+</tr>
+<tr class="odd">
+<td>log(mean_age)</td>
+<td align="right">0.0464715</td>
+<td align="right">0.0318993</td>
+<td align="right">1.4568188</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(coef(summary(lin_log_lmer)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">0.2070297</td>
+<td align="right">0.1579869</td>
+<td align="right">1.3104228</td>
+</tr>
+<tr class="even">
+<td>mean_age</td>
+<td align="right">0.0001020</td>
+<td align="right">0.0000377</td>
+<td align="right">2.7085984</td>
+</tr>
+<tr class="odd">
+<td>log(mean_age)</td>
+<td align="right">0.0134391</td>
+<td align="right">0.0270370</td>
+<td align="right">0.4970641</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(anova(lin_log_lmer, lin_log_paper_lmer))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">npar</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">logLik</th>
+<th align="right">deviance</th>
+<th align="right">Chisq</th>
+<th align="right">Df</th>
+<th align="right">Pr(&gt;Chisq)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lin_log_lmer</td>
+<td align="right">5</td>
+<td align="right">3929.500</td>
+<td align="right">3957.746</td>
+<td align="right">-1959.750</td>
+<td align="right">3919.500</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td>lin_log_paper_lmer</td>
+<td align="right">6</td>
+<td align="right">3793.595</td>
+<td align="right">3827.490</td>
+<td align="right">-1890.797</td>
+<td align="right">3781.595</td>
+<td align="right">137.9051</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>We then predicted from this new, more complex model and compare it to the model without the nested paper random effects structure. Initial testing found that including the nested random effect in the predict algorithm led to massive overfitting, so just the simple random effects structure was used to compute predictions. Below is the figure comparing the two curves. The curves are very similar, suggesting that while adding the nesting of paper does significantly improve the model, visually the difference is very small.</p>
+<pre class="r"><code>lin_log_paper_preds &lt;- predict(lin_log_paper_lmer, re.form = ~ (1 | dataset))
+
+metalab_data_preds &lt;- metalab_data_preds %&gt;%
+  mutate(lin_log_paper_pred = lin_log_paper_preds)</code></pre>
+<p><img src="/explore/report/developmental_curves_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="complex-random-effects-structure-random-slope" class="section level2">
+<h2>Complex random effects structure (random slope)</h2>
+<p>Another way to make the random effects structure more complex is to add a random slope to the model. Two more models were built with a random slope by mean age log transformed, one without the nesting of paper, and one with the nesting of paper. Summaries of the new models with the random slope and the previous models without the random slope are below. Model comparison found that the model with nested structure and the slope was better than the simplest model (no nesting, no slope). The model with both the nested structure and the slope was also better than than the model with only the slope. Based on this it appears that the best model is one that includes both the nested random effects structure and a random slope of mean age log transformed.</p>
+<pre class="r"><code>lin_log_slope_lmer &lt;- lmer(d_calc ~ mean_age + log(mean_age) + 
+                          (log(mean_age)| dataset),
+                          weights = 1/d_var_calc, 
+                          REML = F, data = metalab_data)
+
+lin_log_paper_slope_lmer &lt;- lmer(d_calc ~ mean_age + log(mean_age) + 
+                          (log(mean_age)| dataset / study_ID),
+                          weights = 1/d_var_calc, 
+                          REML = F, data = metalab_data)
+
+kable(coef(summary(lin_log_slope_lmer)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">-0.4068043</td>
+<td align="right">0.5023177</td>
+<td align="right">-0.8098546</td>
+</tr>
+<tr class="even">
+<td>mean_age</td>
+<td align="right">0.0000763</td>
+<td align="right">0.0000635</td>
+<td align="right">1.2022681</td>
+</tr>
+<tr class="odd">
+<td>log(mean_age)</td>
+<td align="right">0.1147617</td>
+<td align="right">0.0882781</td>
+<td align="right">1.3000023</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(coef(summary(lin_log_paper_slope_lmer)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">-0.4758332</td>
+<td align="right">0.5644898</td>
+<td align="right">-0.8429439</td>
+</tr>
+<tr class="even">
+<td>mean_age</td>
+<td align="right">0.0001650</td>
+<td align="right">0.0000931</td>
+<td align="right">1.7712083</td>
+</tr>
+<tr class="odd">
+<td>log(mean_age)</td>
+<td align="right">0.1239773</td>
+<td align="right">0.1006758</td>
+<td align="right">1.2314512</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(coef(summary(lin_log_lmer)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">0.2070297</td>
+<td align="right">0.1579869</td>
+<td align="right">1.3104228</td>
+</tr>
+<tr class="even">
+<td>mean_age</td>
+<td align="right">0.0001020</td>
+<td align="right">0.0000377</td>
+<td align="right">2.7085984</td>
+</tr>
+<tr class="odd">
+<td>log(mean_age)</td>
+<td align="right">0.0134391</td>
+<td align="right">0.0270370</td>
+<td align="right">0.4970641</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(coef(summary(lin_log_paper_lmer)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">0.0550962</td>
+<td align="right">0.1843753</td>
+<td align="right">0.2988266</td>
+</tr>
+<tr class="even">
+<td>mean_age</td>
+<td align="right">0.0000869</td>
+<td align="right">0.0000420</td>
+<td align="right">2.0676816</td>
+</tr>
+<tr class="odd">
+<td>log(mean_age)</td>
+<td align="right">0.0464715</td>
+<td align="right">0.0318993</td>
+<td align="right">1.4568188</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(anova(lin_log_lmer, lin_log_slope_lmer))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">npar</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">logLik</th>
+<th align="right">deviance</th>
+<th align="right">Chisq</th>
+<th align="right">Df</th>
+<th align="right">Pr(&gt;Chisq)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lin_log_lmer</td>
+<td align="right">5</td>
+<td align="right">3929.500</td>
+<td align="right">3957.746</td>
+<td align="right">-1959.750</td>
+<td align="right">3919.500</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td>lin_log_slope_lmer</td>
+<td align="right">7</td>
+<td align="right">3856.008</td>
+<td align="right">3895.552</td>
+<td align="right">-1921.004</td>
+<td align="right">3842.008</td>
+<td align="right">77.49219</td>
+<td align="right">2</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(anova(lin_log_lmer, lin_log_paper_slope_lmer))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">npar</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">logLik</th>
+<th align="right">deviance</th>
+<th align="right">Chisq</th>
+<th align="right">Df</th>
+<th align="right">Pr(&gt;Chisq)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lin_log_lmer</td>
+<td align="right">5</td>
+<td align="right">3929.500</td>
+<td align="right">3957.746</td>
+<td align="right">-1959.750</td>
+<td align="right">3919.500</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td>lin_log_paper_slope_lmer</td>
+<td align="right">10</td>
+<td align="right">3702.607</td>
+<td align="right">3759.099</td>
+<td align="right">-1841.303</td>
+<td align="right">3682.607</td>
+<td align="right">236.8929</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(anova(lin_log_paper_lmer, lin_log_slope_lmer))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">npar</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">logLik</th>
+<th align="right">deviance</th>
+<th align="right">Chisq</th>
+<th align="right">Df</th>
+<th align="right">Pr(&gt;Chisq)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lin_log_paper_lmer</td>
+<td align="right">6</td>
+<td align="right">3793.595</td>
+<td align="right">3827.490</td>
+<td align="right">-1890.797</td>
+<td align="right">3781.595</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td>lin_log_slope_lmer</td>
+<td align="right">7</td>
+<td align="right">3856.008</td>
+<td align="right">3895.552</td>
+<td align="right">-1921.004</td>
+<td align="right">3842.008</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(anova(lin_log_paper_lmer, lin_log_paper_slope_lmer))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">npar</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">logLik</th>
+<th align="right">deviance</th>
+<th align="right">Chisq</th>
+<th align="right">Df</th>
+<th align="right">Pr(&gt;Chisq)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lin_log_paper_lmer</td>
+<td align="right">6</td>
+<td align="right">3793.595</td>
+<td align="right">3827.490</td>
+<td align="right">-1890.797</td>
+<td align="right">3781.595</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td>lin_log_paper_slope_lmer</td>
+<td align="right">10</td>
+<td align="right">3702.607</td>
+<td align="right">3759.099</td>
+<td align="right">-1841.303</td>
+<td align="right">3682.607</td>
+<td align="right">98.9878</td>
+<td align="right">4</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(anova(lin_log_slope_lmer, lin_log_paper_slope_lmer))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">npar</th>
+<th align="right">AIC</th>
+<th align="right">BIC</th>
+<th align="right">logLik</th>
+<th align="right">deviance</th>
+<th align="right">Chisq</th>
+<th align="right">Df</th>
+<th align="right">Pr(&gt;Chisq)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lin_log_slope_lmer</td>
+<td align="right">7</td>
+<td align="right">3856.008</td>
+<td align="right">3895.552</td>
+<td align="right">-1921.004</td>
+<td align="right">3842.008</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td>lin_log_paper_slope_lmer</td>
+<td align="right">10</td>
+<td align="right">3702.607</td>
+<td align="right">3759.099</td>
+<td align="right">-1841.303</td>
+<td align="right">3682.607</td>
+<td align="right">159.4007</td>
+<td align="right">3</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>As before, predictions were built for the new models and plotted on the data. Overall the models do look pretty similar in terms of their predicted fit of the data.</p>
+<pre class="r"><code>lin_log_slope_preds &lt;- predict(lin_log_slope_lmer, re.form = ~ (log(mean_age) | dataset))
+lin_log_paper_slope_preds &lt;- predict(lin_log_paper_slope_lmer, re.form = ~ (log(mean_age) | dataset))
+
+
+metalab_data_preds &lt;- metalab_data_preds %&gt;%
+  mutate(lin_log_slope_pred = lin_log_slope_preds) %&gt;%
+  mutate(lin_log_paper_slope_pred = lin_log_paper_slope_preds)</code></pre>
+<p><img src="/explore/report/developmental_curves_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="subset-to-only-those-papers-with-multiple-ages" class="section level2">
+<h2>Subset to only those papers with multiple ages</h2>
+<p>One concern with using a random slope with meta-analysis nested by paper is that not all studies included more than one age group. To be sure that our random slope is really appropriate, here we look at only papers where more than one age group was tested.</p>
+<div id="two-age-groups" class="section level3">
+<h3>Two age groups</h3>
+<p>To start we arbitrarily decided on two age groups, at least more than two months apart. Below we build a new model only looking at data where papers had at least two age groups. The structure of the model is the same as the model with papers nested in meta-analysis and a random slope of mean age log transformed.</p>
+<pre class="r"><code>multiage_data &lt;- metalab_data_preds %&gt;%
+  group_by(dataset, study_ID) %&gt;%
+  mutate(count_ages = length(unique(floor(mean_age/2)))) %&gt;%
+  filter(count_ages &gt; 1)
+
+lin_log_paper_slope_multiage_lmer &lt;- lmer(d_calc ~ mean_age + log(mean_age) + 
+                                     (log(mean_age) | dataset / study_ID),
+                                     weights = 1/d_var_calc, 
+                                     REML = F, data = multiage_data)
+
+kable(coef(summary(lin_log_paper_slope_multiage_lmer)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">-0.3422399</td>
+<td align="right">0.5885150</td>
+<td align="right">-0.5815314</td>
+</tr>
+<tr class="even">
+<td>mean_age</td>
+<td align="right">0.0002139</td>
+<td align="right">0.0001149</td>
+<td align="right">1.8624403</td>
+</tr>
+<tr class="odd">
+<td>log(mean_age)</td>
+<td align="right">0.0869112</td>
+<td align="right">0.1076704</td>
+<td align="right">0.8071970</td>
+</tr>
+</tbody>
+</table>
+<p>Predictions were calculated for the new model and visually compared to the simple model on the full data set with no nested random effects and no random slope. The plot below suggests that for this reduced data set, the addition of the nested random effects and random slope does differ greatly from the simpler model.</p>
+<pre class="r"><code>lin_log_paper_slope_multiage_preds &lt;- predict(lin_log_paper_slope_multiage_lmer, re.form = ~ (log(mean_age)| dataset))
+
+multiage_data &lt;- multiage_data %&gt;%
+  ungroup %&gt;%
+  select(dataset, short_name, study_ID, d_calc, mean_age, d_var_calc, lin_log_pred) %&gt;%
+  mutate(lin_log_paper_slope_multiage_pred = lin_log_paper_slope_multiage_preds)</code></pre>
+<p><img src="/explore/report/developmental_curves_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="three-age-groups" class="section level3">
+<h3>Three age groups</h3>
+<p>We also did the same analysis, but further reducing the data set to only papers that included at least three different age groups.</p>
+<pre class="r"><code>multiage_3_data &lt;- metalab_data_preds %&gt;%
+  group_by(dataset, study_ID) %&gt;%
+  mutate(count_ages = length(unique(floor(mean_age/2)))) %&gt;%
+  filter(count_ages &gt; 2)
+
+lin_log_paper_slope_multiage_3_lmer &lt;- lmer(d_calc ~ mean_age + log(mean_age) + 
+                                     (log(mean_age) | dataset / study_ID),
+                                     weights = 1/d_var_calc, 
+                                     REML = F, data = multiage_3_data)
+
+kable(coef(summary(lin_log_paper_slope_multiage_3_lmer)))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">-0.1704940</td>
+<td align="right">0.6650683</td>
+<td align="right">-0.2563556</td>
+</tr>
+<tr class="even">
+<td>mean_age</td>
+<td align="right">0.0002755</td>
+<td align="right">0.0001376</td>
+<td align="right">2.0019735</td>
+</tr>
+<tr class="odd">
+<td>log(mean_age)</td>
+<td align="right">0.0480790</td>
+<td align="right">0.1205606</td>
+<td align="right">0.3987955</td>
+</tr>
+</tbody>
+</table>
+<p>Predictions were calculated for the new model and visually compared to the simple model on the full data set with no nested random effects and no random slope. The plot below suggests that for this further reduced data set, the difference becomes the two models becomes even more apparent.</p>
+<pre class="r"><code>lin_log_paper_slope_multiage_3_preds &lt;- predict(lin_log_paper_slope_multiage_3_lmer, re.form = ~ (log(mean_age)| dataset))
+
+multiage_3_data &lt;- multiage_3_data %&gt;%
+  ungroup %&gt;%
+  select(dataset, short_name, study_ID, d_calc, mean_age, d_var_calc, lin_log_pred) %&gt;%
+  mutate(lin_log_paper_slope_multiage_3_pred = lin_log_paper_slope_multiage_3_preds)</code></pre>
+<p><img src="/explore/report/developmental_curves_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+</div>
+<div id="conclusions" class="section level2">
+<h2>Conclusions</h2>
+<p>In this report we sought to find the best curve to describe developmental data. We found that, regarding predictors, the best fit of the data appears to be a model that includes both mean age and mean age log transformed as predictors. We further improved the curve by using complex random effects structures in our regressions. We found that a more complicated random effects structure was best by: 1) nesting paper in meta-analysis, and 2) including a random slope by mean age log transformed. This structure was most appropriate when we only looked at papers that had at least two or three age groups, to ensure the random slope applied to all data analyzed.</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/explore/report/developmental_curves/&amp;text=Developmental%20curve%20comparison" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/explore/report/developmental_curves/&amp;t=Developmental%20curve%20comparison" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Developmental%20curve%20comparison&amp;body=/explore/report/developmental_curves/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/explore/report/developmental_curves/&amp;title=Developmental%20curve%20comparison" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Developmental%20curve%20comparison%20/explore/report/developmental_curves/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/explore/report/developmental_curves/&amp;title=Developmental%20curve%20comparison" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/nelson-bighetti/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg" alt="Nelson Bighetti">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Nelson Bighetti</a></h5>
+        <h6 class="card-subtitle">Professor of Artificial Intelligence</h6>
+        <p class="card-text">My research interests include distributed robotics, mobile computing and programmable matter.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/GeorgeCushen" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/gcushen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js" integrity="sha512-7t8APmYpzEsZP7CYoA7RfMPV9Bb+PJHa9x2WiUnDXZx3XHveuyWUtvNOexhkierl5flZ3tr92dP1mMS+SGlD+A==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.3b2b658c61ebd725bd5fc606c89fe44c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic Website Builder</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
