@@ -56,3 +56,5 @@ lapply(dataset_info$short_name, function(s_name) {
   file.copy(from = here("static", current_dataset$src),
             to = here("content", "dataset", s_name, "featured.png"))
 })
+
+blogdown::build_site()
