@@ -26,7 +26,7 @@
   
     
   
-  <meta name="description" content="Contribution Challenge 2020 To celebrate the latest (ongoing) upgrade and the inclusion of 25 meta-analyses to date, the MetaLab team with support of the Fetzer Franklin Fund is organizing a challenge for authors of meta-analyses on cognitive development (data challenge) and for contributors of shiny apps (code challenge).">
+  <meta name="description" content="Contribution Challenge 2020 To celebrate the latest (ongoing) upgrade and the inclusion of 25 meta-analyses to date, the MetaLab team with support of the Fetzer Franklin Fund is organizing a challenge for authors of meta-analyses on cognitive development (data challenge) and for contributors of shiny apps (code challenge). The contribution challenge will offer three $1,000 US in cash prizes distributed between (teams of) authors or coders, who contribute meta-analysis data to the MetaLab database or, who make substantial contributions to the site, for example proposing and implementing a shiny app providing a new analysis or functionality in coordination with the MetaLab team.">
 
   <link href="/metalab-site/rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet">
   <link href="/metalab-site/rmarkdown-libs/dt-core-bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet">
@@ -242,44 +242,6 @@
 
 
 
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84150050-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag() {
-      dataLayer.push(arguments);
-  }
-
-  function trackOutboundLink(url, target) {
-    gtag('event', 'click', {
-         'event_category': 'outbound',
-         'event_label': url,
-         'transport_type': 'beacon',
-         'event_callback': function () {
-           if (target !== '_blank') {
-             document.location = url;
-           }
-         }
-    });
-    console.debug("Outbound link clicked: " + url);
-  }
-
-  function onClickCallback(event) {
-    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
-      return;
-    }
-    trackOutboundLink(event.target, event.target.getAttribute('target'));  
-  }
-
-  gtag('js', new Date());
-  gtag('config', 'UA-84150050-1', {});
-
-  
-  document.addEventListener('click', onClickCallback, false);
-</script>
-
-
   
 
 
@@ -310,7 +272,7 @@
   <meta property="og:site_name" content="MetaLab">
   <meta property="og:url" content="https://langcog.github.io/metalab-site/documentation/challenge/">
   <meta property="og:title" content="Contribution Challenge | MetaLab">
-  <meta property="og:description" content="Contribution Challenge 2020 To celebrate the latest (ongoing) upgrade and the inclusion of 25 meta-analyses to date, the MetaLab team with support of the Fetzer Franklin Fund is organizing a challenge for authors of meta-analyses on cognitive development (data challenge) and for contributors of shiny apps (code challenge)."><meta property="og:image" content="https://langcog.github.io/metalab-site/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="og:description" content="Contribution Challenge 2020 To celebrate the latest (ongoing) upgrade and the inclusion of 25 meta-analyses to date, the MetaLab team with support of the Fetzer Franklin Fund is organizing a challenge for authors of meta-analyses on cognitive development (data challenge) and for contributors of shiny apps (code challenge). The contribution challenge will offer three $1,000 US in cash prizes distributed between (teams of) authors or coders, who contribute meta-analysis data to the MetaLab database or, who make substantial contributions to the site, for example proposing and implementing a shiny app providing a new analysis or functionality in coordination with the MetaLab team."><meta property="og:image" content="https://langcog.github.io/metalab-site/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="https://langcog.github.io/metalab-site/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     

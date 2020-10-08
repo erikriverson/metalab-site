@@ -1,3 +1,0 @@
-User-agent: *
-
-Sitemap: https://langcog.github.io/metalab-site/sitemap.xml
