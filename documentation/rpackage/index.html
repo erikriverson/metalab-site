@@ -17,20 +17,16 @@
   
   
   
-    
-    
-    
-  
   
 
-  <meta name="author" content="Nelson Bighetti">
+  
 
   
   
   
     
   
-  <meta name="description" content="Professor of Artificial Intelligence">
+  <meta name="description" content="">
 
   <link href="/metalab-site/rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet">
   <link href="/metalab-site/rmarkdown-libs/dt-core-bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet">
@@ -246,6 +242,44 @@
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84150050-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-84150050-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
   
 
 
@@ -278,7 +312,7 @@
   <meta property="og:site_name" content="MetaLab">
   <meta property="og:url" content="https://langcog.github.io/metalab-site/documentation/rpackage/">
   <meta property="og:title" content="Building the Metalab Platform | MetaLab">
-  <meta property="og:description" content="Professor of Artificial Intelligence"><meta property="og:image" content="https://langcog.github.io/metalab-site/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="og:description" content=""><meta property="og:image" content="https://langcog.github.io/metalab-site/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="https://langcog.github.io/metalab-site/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
@@ -395,11 +429,11 @@
           </a>
           <div class="dropdown-menu">
             
-              <a class="dropdown-item" href="/metalab-site/explore/apps"><span>Applications</span></a>
+              <a class="dropdown-item" href="/metalab-site/explore/apps/"><span>Applications</span></a>
             
-              <a class="dropdown-item" href="/metalab-site/explore/datasets"><span>Datasets by Domain</span></a>
+              <a class="dropdown-item" href="/metalab-site/explore/datasets/"><span>Datasets by Domain</span></a>
             
-              <a class="dropdown-item" href="/metalab-site/explore/reports"><span>Reports</span></a>
+              <a class="dropdown-item" href="/metalab-site/explore/reports/"><span>Reports</span></a>
             
           </div>
         </li>

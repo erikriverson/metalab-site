@@ -17,13 +17,9 @@
   
   
   
-    
-    
-    
-  
   
 
-  <meta name="author" content="Nelson Bighetti">
+  
 
   
   
@@ -246,6 +242,44 @@
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84150050-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-84150050-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
   
 
 
@@ -395,11 +429,11 @@
           </a>
           <div class="dropdown-menu">
             
-              <a class="dropdown-item" href="/metalab-site/explore/apps"><span>Applications</span></a>
+              <a class="dropdown-item" href="/metalab-site/explore/apps/"><span>Applications</span></a>
             
-              <a class="dropdown-item" href="/metalab-site/explore/datasets"><span>Datasets by Domain</span></a>
+              <a class="dropdown-item" href="/metalab-site/explore/datasets/"><span>Datasets by Domain</span></a>
             
-              <a class="dropdown-item" href="/metalab-site/explore/reports"><span>Reports</span></a>
+              <a class="dropdown-item" href="/metalab-site/explore/reports/"><span>Reports</span></a>
             
           </div>
         </li>
@@ -717,103 +751,6 @@
 
 
 
-
-
-
-  
-  
-
-
-
-  
-  
-  
-    
-  
-  
-  
-  <div class="media author-card content-widget-hr">
-    
-      
-      <a href="https://langcog.github.io/metalab-site/"><img class="avatar mr-3 avatar-circle" src="/metalab-site/author/nelson-bighetti/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg" alt="Nelson Bighetti"></a>
-    
-
-    <div class="media-body">
-      <h5 class="card-title"><a href="https://langcog.github.io/metalab-site/">Nelson Bighetti</a></h5>
-      <h6 class="card-subtitle">Professor of Artificial Intelligence</h6>
-      <p class="card-text">My research interests include distributed robotics, mobile computing and programmable matter.</p>
-      <ul class="network-icon" aria-hidden="true">
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="/metalab-site/#contact" >
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://twitter.com/GeorgeCushen" target="_blank" rel="noopener">
-        <i class="fab fa-twitter"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
-        <i class="ai ai-google-scholar"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://github.com/gcushen" target="_blank" rel="noopener">
-        <i class="fab fa-github"></i>
-      </a>
-    </li>
-  
-</ul>
-
-    </div>
-  </div>
 
 
 
